@@ -1,18 +1,28 @@
 <?php /* Template Name: AboutUs Template */ ?>
 <!-- Page Content -->
-<a  name="services"></a>
+<a  name="brothers"></a>
 <div class="banner2">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Brothers</h2>
-                <h3>We will never be typical, because the world deserves better.</h3>
+<?php
+    //Query posts to select all posts with this page's title category
+    query_posts( 'category_name=brothers_title' );
+	
+	//Start the loop
+	while ( have_posts() ) : the_post();
+		$htmlString = ' <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>' . get_the_title() . '</h2>
+                    <h3>' . get_the_content() . '</h3>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- /.container -->
-
+        <!-- /.container -->';
+	
+	endwhile;
+	
+	echo $htmlString;
+	$htmlString = "";
+	?>
 </div>
 <!-- /.banner -->
 

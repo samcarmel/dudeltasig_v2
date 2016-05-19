@@ -31,8 +31,7 @@ h6 {
 }
 
 .intro-header {
-
-    margin-bottom: -6px;
+	height: 96%;
     text-align: center;
     color: #f8f8f8;
     /*background: url(../img/intro-bg.jpg) no-repeat center center;
@@ -63,13 +62,15 @@ h6 {
     -webkit-transform: scaleX(2);
     -moz-transform: scaleX(2);
 }
-.container{
+.intro-container{
+	height: inherit;
     position: relative;
     z-index: 2;
 }
 .intro-message {
+	height: 100%;
     position: relative;
-    padding-top: 20%;
+    padding-top: 25%;
     padding-bottom: 20%;
 }
 

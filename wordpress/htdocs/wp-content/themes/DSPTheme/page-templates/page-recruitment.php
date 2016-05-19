@@ -1,18 +1,28 @@
 <?php /* Template Name: AboutUs Template */ ?>
 <!-- Page Content -->
-<a  name="services"></a>
+<a  name="recruitment"></a>
 <div class="banner2">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Recruitment</h2>
-                <h3>We will never be typical, because the world deserves better.</h3>
+<?php
+    //Query posts to select all posts with this page's title category
+    query_posts( 'category_name=recruitment_title' );
+	
+	//Start the loop
+	while ( have_posts() ) : the_post();
+		$htmlString = ' <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>' . get_the_title() . '</h2>
+                    <h3>' . get_the_content() . '</h3>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- /.container -->
-
+        <!-- /.container -->';
+	
+	endwhile;
+	
+	echo $htmlString;
+	$htmlString = "";
+	?>
 </div>
 <!-- /.banner -->
 <?php
@@ -37,7 +47,6 @@ while ( have_posts() ) : the_post();
 
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
                     <div class="clearfix"></div>';
     }
     else
@@ -46,7 +55,6 @@ while ( have_posts() ) : the_post();
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
                     <div class="clearfix"></div>';
     }
 
@@ -59,7 +67,7 @@ while ( have_posts() ) : the_post();
     {
         $htmlString .= '    </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="' . get_bloginfo("template_url") .'/img/dog.png" alt="">
+                    <img class="img-responsive" src="' . get_field("Image") .'" alt="">
                 </div>
             </div>
 
@@ -74,7 +82,7 @@ while ( have_posts() ) : the_post();
     {
         $htmlString .= '</div>
 					<div class="col-lg-5 col-lg-offset-2 col-sm-6">
-						<img class="img-responsive" src="' . get_bloginfo("template_url") .'/img/ipad.png" alt="">
+						<img class="img-responsive" src="' . get_field("Image") .'" alt="">
 					</div>
 				</div>
 

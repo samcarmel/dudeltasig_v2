@@ -60,10 +60,13 @@
                         <a href="#about">About</a>
                     </li>
                     <li>
-                        <a href="#services">Services</a>
+                        <a href="#recruitment">Recruitment</a>
                     </li>
                     <li>
-                        <a href="#contact">Contact</a>
+                        <a href="#brothers">Brothers</a>
+                    </li>
+					<li>
+                        <a href="#donate">Donate</a>
                     </li>
                 </ul>
             </div>
@@ -94,7 +97,7 @@ while ( have_posts() ) : the_post();
                 <source src="' . get_bloginfo("template_url") . '/videos/banner_greekWeek.mp4" type="video/mp4">
             </video>
     </div>
-        <div class="container">
+        <div class="container intro-container">
 
             <div class="row">
                 <div class="col-lg-12">

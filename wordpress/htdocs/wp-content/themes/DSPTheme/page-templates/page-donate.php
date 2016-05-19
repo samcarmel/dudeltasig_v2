@@ -1,5 +1,29 @@
 <?php /* Template Name: Donate Template */ ?>
-<a  name="contact"></a>
+<a  name="donate"></a>
+<div class="banner2">
+<?php
+    //Query posts to select all posts with this page's title category
+    query_posts( 'category_name=donate_title' );
+	
+	//Start the loop
+	while ( have_posts() ) : the_post();
+		$htmlString = ' <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>' . get_the_title() . '</h2>
+                    <h3>' . get_the_content() . '</h3>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->';
+	
+	endwhile;
+	
+	echo $htmlString;
+	$htmlString = "";
+	?>
+</div>
+<!-- /.banner -->
     <div class="banner">
 
         <div class="container">
