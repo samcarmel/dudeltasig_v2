@@ -41,7 +41,7 @@
             $SlideDuration: 160,
             $SlideWidth: 250,
             $SlideHeight: 350,
-            $SlideSpacing: 3,
+            $SlideSpacing: 5,
             $Cols: 5,
             $ArrowNavigatorOptions: {
                 $Class: $JssorArrowNavigator$,
@@ -90,6 +90,10 @@
 */
     .brotherImage{
         text-align: center;
+        background: rgba(24, 142, 55, 0.23);
+        -webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.65);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.65);
     }
     .jssorb03 {
         position: absolute;
@@ -150,7 +154,7 @@ try
     if (($handle = fopen($brotherListPath, "r")) !== FALSE) {
 
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            if($row != 1 && strtolower($data[1]) != "nickname")
+            if($row != 1 && strtolower($data[1]) != "nickname" && strtolower($data[1]) != "chapter admin")
             {
                 $num = count($data);
                 $brotherSingleHTML = "";
@@ -177,12 +181,21 @@ try
                 $brotherLastName = $nameSplit[1];
                 $brotherID = strtolower($brotherFirstName . "_" . $brotherLastName);
 
+                $brotherImgPath =  $_SERVER['DOCUMENT_ROOT'] . '/wp-content/themes/DSPTheme/brothersSlider/img/' . strtoupper($brotherFirstName . "_" . $brotherLastName) . ".jpg";
+                echo $brotherImgPath;
+                var_dump(file_exists($brotherImgPath));
+                if(!file_exists($brotherImgPath))
+                {
+                    $brotherImgPath = get_bloginfo("template_url"). '/brothersSlider/img/man_placeholder.gif';
+                }
+
                 $brotherSingleHTML = '<div id="'. $brotherID . '" class="brotherImage" style="display: none;">
-                    <img data-u="image" src="' . get_bloginfo('template_url') . '/brothersSlider/img/placeholder.png" />
+                        <img data-u="image" src="' . $brotherImgPath . '" />
                     <h3>' . $brotherFirstName . " " . $brotherLastName . '</h3>
                 </div>';
 
                 $brotherArray[$brotherID] = $brotherSingleHTML;
+
 
             }
             $row++;
@@ -202,34 +215,36 @@ catch(Exception $e)
 ?>
 
 
+<div class="content-section-a">
+    <div class="container">
+        <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1000px; height: 396px; overflow: hidden; visibility: hidden;">
+            <!-- Loading Screen -->
+            <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+                <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                <div style="position:absolute;display:block;background:url('<?php bloginfo('template_url'); ?>/brothersSlider/img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+            </div>
+            <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1000px; height: 396px; overflow: hidden;">
+                <?php
+                    foreach($brotherArray as $brother)
+                    {
+                        echo $brother;
+                    }
+                ?>
+                <a data-u="ad" href="http://www.jssor.com" style="display:none">jQuery Slider</a>
 
-<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1000px; height: 396px; overflow: hidden; visibility: hidden;">
-    <!-- Loading Screen -->
-    <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-        <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-        <div style="position:absolute;display:block;background:url('<?php bloginfo('template_url'); ?>/brothersSlider/img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
-    </div>
-    <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1000px; height: 396px; overflow: hidden;">
-        <?php
-            foreach($brotherArray as $brother)
-            {
-                echo $brother;
-            }
-        ?>
-        <a data-u="ad" href="http://www.jssor.com" style="display:none">jQuery Slider</a>
+            </div>
+            <!-- Bullet Navigator
+            <div data-u="navigator" class="jssorb03" style="bottom:10px;right:10px;">
 
-    </div>
-    <!-- Bullet Navigator
-    <div data-u="navigator" class="jssorb03" style="bottom:10px;right:10px;">
-
-        <div data-u="prototype" style="width:21px;height:21px;">
-            <div data-u="numbertemplate"></div>
+                <div data-u="prototype" style="width:21px;height:21px;">
+                    <div data-u="numbertemplate"></div>
+                </div>
+            </div>
+            Arrow Navigator -->
+            <span data-u="arrowleft" class="jssora03l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
+            <span data-u="arrowright" class="jssora03r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
         </div>
+
+        <!-- #endregion Jssor Slider End -->
     </div>
-    Arrow Navigator -->
-    <span data-u="arrowleft" class="jssora03l" style="top:0px;left:8px;width:55px;height:55px;" data-autocenter="2"></span>
-    <span data-u="arrowright" class="jssora03r" style="top:0px;right:8px;width:55px;height:55px;" data-autocenter="2"></span>
 </div>
-
-<!-- #endregion Jssor Slider End -->
-

@@ -1,7 +1,6 @@
 <?php
 //Index (default page template)
-
-get_header();
+    get_header();
 ?>
 
 	<!--About Us Page-->
