@@ -34,5 +34,6 @@
 	require('page-templates/page-donate.php');
 	?>
 	
+	<?php echo("hello world") ?>
 
 	<?php get_footer(); ?>
