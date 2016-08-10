@@ -1,4 +1,14 @@
-
+<?php
+/**
+ * The template for displaying the header
+ *
+ * Displays all of the head element and everything up until the "site-content" div.
+ *
+ * @package WordPress
+ * @subpackage DSPTheme
+ * @since DSPTheme 1.0
+ */
+?>
 <head profile="http://gmpg.org/xfn/11">
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <meta name="generator" content="WordPress <?php bloginfo('version'); ?>" /> <!-- leave this for stats -->
@@ -35,6 +45,80 @@
 <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
 <?php wp_head(); ?><meta name="verify-v1" content="53/AHENoYym8RbXpIdO+Aa2GaVPVpX8G79ehG6+NYTw=" />
+
+<!-- GRID SLIDER STYLES and SCRIPT -->
+    <style type="text/css">
+        body{
+            background-color:#eee;
+        }
+        .sliderContainer{
+            margin-top:100px;
+            margin-bottom:100px;
+        }
+        .main{
+            -webkit-box-shadow:0 10px 6px -6px rgba(0,0,0,0.4);
+            -moz-box-shadow:0 10px 6px -6px rgba(0,0,0,0.4);
+            box-shadow:0 10px 6px -6px rgba(0,0,0,0.4);
+        }
+    </style>
+ 
+    <script type="text/javascript">
+           jQuery(window).load(function() {
+            //initialize lightbox
+            jQuery('#slider1 li>a').fotobox({
+                responsive:true,
+                autoPlay:false,
+                delay:5000,
+                speed:600,
+                easing:'swing',
+                navButtons:'hover',
+                playButton:true,
+                numberInfo:true,
+                timer:true,
+                continuous:true,
+                mousewheel:true,
+                keyboard:true,
+                swipe:true,
+                errorMessage:'Error Loading Content',
+                thumbnails: {
+                    enable:false,
+                    width:50,
+                    height:50,
+                    position:'bottom'
+                }
+            });
+             
+             //initialize grid slider   
+            jQuery("#slider1").gridSlider({
+                responsive:true,
+                numCols:4,
+                numRows:2,
+                slideWidth:250,
+                slideHeight:125,
+                slideBorder:5,
+                slideMargin:10, 
+                padding:10,
+                panelEffect:'coverDown',
+                captionEffect:'slide',
+                captionWidth:100,
+                captionHeight:'auto',
+                hoverEffect:'zoomIn',
+                keyboard:true,          
+                mousewheel:true,
+                pageInfo:'page',
+                current:'{current} / {total}',
+                hoverBox: {
+                    width:250,
+                    height:'auto',
+                    delay:1000,
+                    toggle:true
+                }
+            });
+        });
+
+    </script>
+
+
 </head>
 
 <!--BEGIN-NAV------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -94,7 +178,8 @@ while ( have_posts() ) : the_post();
           <div class="video-overlay"></div>
             <div class="video-wrap">
                 <video autoplay="autoplay" muted="muted" loop="loop" poster="' . get_bloginfo("template_url") . '/img/recruitment_cups.jpg" class="bg-video">
-                <source src="' . get_bloginfo("template_url") . '/videos/banner_greekWeek.mp4" type="video/mp4">
+                <source src="http://res.cloudinary.com/dvbijpnfw/video/upload/v1470802163/banner_greekWeekCompressed_yiqi2y.mp4">
+                
             </video>
     </div>
         <div class="container intro-container">
