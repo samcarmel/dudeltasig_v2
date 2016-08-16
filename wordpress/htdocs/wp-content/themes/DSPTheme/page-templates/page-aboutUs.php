@@ -25,6 +25,34 @@
 	?>
     </div>
     <!-- /.banner -->
+
+    <!-- BEGIN Description -->
+<?php
+
+    //Get this pages descriotion
+    query_posts( 'category_name=aboutUs_description' );
+
+    //Start the loop
+    while ( have_posts() ) : the_post();
+        $htmlString = '<div class="content-section-a">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 pageDescription">
+                        <span>' . get_the_content() . '</span>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+            </div>';
+
+    endwhile;
+
+    echo $htmlString;
+    $htmlString = "";
+?>
+
+    <!-- END Description -->
+    <!-- BEGIN Content -->
 	<?php
     //Query posts to select all posts with this pages category
     query_posts( 'category_name=aboutUs' );
@@ -69,7 +97,7 @@
         if($count%2 == 0)
         {
             $htmlString .= '    </div>
-                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                <div class="imageContainer col-lg-5 col-sm-pull-6  col-sm-6">
                     <img class="img-responsive" src="' . get_field("Image") .'" alt="">
                 </div>
             </div>
@@ -84,7 +112,7 @@
         else
         {
             $htmlString .= '</div>
-					<div class="col-lg-5 col-lg-offset-2 col-sm-6">
+					<div class="imageContainer col-lg-5 col-lg-offset-2 col-sm-6">
 						<img class="img-responsive" src="' . get_field("Image") .'" alt="">
 					</div>
 				</div>
@@ -132,4 +160,4 @@
 	
 	
 	?>
-   
+   <!-- END Content -->

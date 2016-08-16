@@ -21,24 +21,15 @@
 <title><?php bloginfo('name'); ?><?php wp_title(); ?></title>
 
 <!--FAVICON LINKS (use http://realfavicongenerator.net/ to generate replacement) -->
-<link rel="apple-touch-icon" sizes="57x57" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png" href="<?php bloginfo('template_url'); ?>/img/favicons/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="<?php bloginfo('template_url'); ?>/img/favicons/android-chrome-192x192.png" sizes="192x192">
-<link rel="icon" type="image/png" href="<?php bloginfo('template_url'); ?>/img/favicons/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="<?php bloginfo('template_url'); ?>/img/favicons/favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="<?php bloginfo('template_url'); ?>/img/favicons/manifest.json">
-<link rel="mask-icon" href="<?php bloginfo('template_url'); ?>/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="msapplication-TileImage" content="<?php bloginfo('template_url'); ?>/img/favicons/mstile-144x144.png">
-<meta name="theme-color" content="#ffffff">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php bloginfo('template_url'); ?>/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="<?php bloginfo('template_url'); ?>/img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="<?php bloginfo('template_url'); ?>/img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="<?php bloginfo('template_url'); ?>/img/favicons/manifest.json">
+    <link rel="mask-icon" href="<?php bloginfo('template_url'); ?>/img/favicons/safari-pinned-tab.svg" color="#005b3c">
+    <link rel="shortcut icon" href="<?php bloginfo('template_url'); ?>/img/favicons/favicon.ico">
+    <meta name="msapplication-config" content="<?php bloginfo('template_url'); ?>/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 <!--END FAVICON LINKS ------------------------------------------------------------->
 
 <!--CUSTOM FONTS-->
@@ -52,13 +43,24 @@
             background-color:#eee;
         }
         .sliderContainer{
-            margin-top:100px;
-            margin-bottom:100px;
+            /*margin-top:100px;
+            margin-bottom:100px;*/
         }
         .main{
             -webkit-box-shadow:0 10px 6px -6px rgba(0,0,0,0.4);
             -moz-box-shadow:0 10px 6px -6px rgba(0,0,0,0.4);
             box-shadow:0 10px 6px -6px rgba(0,0,0,0.4);
+        }
+        #slider1{
+        }
+        .gs-slide-panel{
+            min-height: 30vw !IMPORTANT;
+            max-height: 500px !IMPORTANT;
+        }
+        .gs-container{
+            height: auto !IMPORTANT;
+            max-width: 90%;
+            margin: auto;
         }
     </style>
  
@@ -72,13 +74,14 @@
                 speed:600,
                 easing:'swing',
                 navButtons:'hover',
-                playButton:true,
-                numberInfo:true,
-                timer:true,
+                playButton:false,
+                numberInfo:false,
+                timer:false,
                 continuous:true,
-                mousewheel:true,
+                mousewheel:false,
                 keyboard:true,
                 swipe:true,
+                fitImagesInViewport:true,
                 errorMessage:'Error Loading Content',
                 thumbnails: {
                     enable:false,
@@ -93,18 +96,13 @@
                 responsive:true,
                 numCols:4,
                 numRows:2,
-                slideWidth:250,
-                slideHeight:125,
+                slideWidth:100,
+                slideHeight:150,
                 slideBorder:5,
                 slideMargin:10, 
                 padding:10,
                 panelEffect:'coverDown',
-                captionEffect:'slide',
-                captionWidth:100,
-                captionHeight:'auto',
-                hoverEffect:'zoomIn',
-                keyboard:true,          
-                mousewheel:true,
+                keyboard:true,         
                 pageInfo:'page',
                 current:'{current} / {total}',
                 hoverBox: {
@@ -121,8 +119,9 @@
 
 </head>
 
-<!--BEGIN-NAV------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<body>
+<!--BEGIN-NAV-->
+
+<body style="overflow-x: hidden;" class="dudeltasig">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -191,16 +190,22 @@ while ( have_posts() ) : the_post();
                         <h3>' . get_the_content() . '</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
-                            <li>
-                                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-                            </li>
-                        </ul>
+                        <li>
+                            <a href="https://twitter.com/DrexelDeltaSig" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/DUDeltaSig/" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="btn btn-default btn-lg" onclick="function(){jQuery("#donateForm").submit();}"><i class="fa fa-paypal fa-fw"></i> <span class="network-name">Donate</span></a>
+                           <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" align="right" id="donateForm" style="display: none;">
+                                <!-- Paypal Button-->
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                                <input type="hidden" name="hosted_button_id" value="FG4VAEKA8N8HU">
+                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                            </form>
+                        </li>
+                    </ul>
                     </div>
                 </div>
             </div>
