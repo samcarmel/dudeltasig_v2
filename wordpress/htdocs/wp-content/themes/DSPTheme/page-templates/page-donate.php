@@ -14,7 +14,7 @@
                     <h3>' . get_the_content() . '</h3>
                     <ul class="list-inline intro-social-buttons donateBannerBtn">
                         <li>
-                            <a href="" class="btn btn-default btn-lg" onclick="function(){jQuery("#donateForm").submit();}"><i class="fa fa-paypal fa-fw"></i> <span class="network-name">Donate</span></a>
+                            <a href="" class="btn btn-default btn-lg" onclick="function(){jQuery("#donateForm").submit();}"><i class="fa fa-paypal fa-fw"></i> <span class="network-name">Make A Contribution</span></a>
                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" align="right" id="donateForm" style="display: none;">
                                 <!-- Paypal Button-->
                                 <input type="hidden" name="cmd" value="_s-xclick">
